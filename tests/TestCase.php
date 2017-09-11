@@ -4,7 +4,6 @@ namespace Jaddek\Services\Notification\Tests;
 
 use Jaddek\Services\Notification\Domains\Email\Transports\SwiftTransport;
 use Jaddek\Services\Notification\Domains\Sms\Transports\SmscTransport;
-use Jaddek\Services\Notification\Interfaces\TransportInterface;
 use SMSCenter\SMSCenter;
 
 /**
@@ -45,7 +44,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|TransportInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     public function createSmsMockTransport()
     {
@@ -68,7 +67,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|TransportInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     public function createEmailMockTransport()
     {
