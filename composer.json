@@ -1,0 +1,28 @@
+{
+    "name": "tonynazarov/notification-service",
+    "require": {
+        "jhaoda/smscenter" : "*",
+        "swiftmailer/swiftmailer": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.2"
+    },
+    "authors": [
+        {
+            "name": "tonynazarov",
+            "email": "jaddek@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Jaddek\\Services\\Notifaction\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jaddek\\Services\\Notification\\": "src/",
+            "Jaddek\\Services\\Notification\\Tests\\": "tests/"
+        }
+    }
+}
