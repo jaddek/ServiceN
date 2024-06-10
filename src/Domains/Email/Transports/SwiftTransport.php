@@ -69,11 +69,4 @@ class SwiftTransport implements EmailTransportInterface
     private function __clone()
     {
     }
-
-    /**
-     *
-     */
-    private function __wakeup()
-    {
-    }
 }

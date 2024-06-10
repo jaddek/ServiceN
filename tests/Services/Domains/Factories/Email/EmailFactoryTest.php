@@ -10,7 +10,7 @@ use Jaddek\Services\Notification\Tests\TestCase;
  * Class SmsFactoryTest
  * @package Jaddek\Services\Notification\Tests\Service\Domains\Factories\Email
  */
-class SmsFactoryTest extends TestCase
+class EmailFactoryTest extends TestCase
 {
     /**
      *

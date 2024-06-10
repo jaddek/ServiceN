@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jaddek\Services\Notification;
 
 use Jaddek\Services\Notification\Domains\Factories\Email\EmailFactory;
@@ -12,15 +14,10 @@ use Jaddek\Services\Notification\Interfaces\Email\MessageInterface;
 use Jaddek\Services\Notification\Interfaces\Email\TransportInterface as EmailTransportInterface;
 use Jaddek\Services\Notification\Interfaces\Sms\TransportInterface as SmsTransportInterface;
 
-
-/**
- * Class Service
- * @package Jaddek\Services\Notification
- */
 class Service
 {
-    protected $sms;
-    protected $email;
+    protected readonly SmsFacade $sms;
+    protected readonly EmailFacade $email;
 
     public function __construct()
     {

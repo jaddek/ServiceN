@@ -1,21 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jaddek\Services\Notification\Tests\Service\Domains\Sms;
 
 use Jaddek\Services\Notification\Domains\Sms\Sender;
 use Jaddek\Services\Notification\Domains\Sms\Sms;
 use Jaddek\Services\Notification\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\Exception;
 
-/**
- * Class SmsTest
- * @package Jaddek\Services\Notification\Tests\Service\Domains\Sms
- */
 class SenderTest extends TestCase
 {
     /**
-     * @dataProvider smsProvider
-     * @param array $params
+     * @throws Exception
      */
+    #[DataProvider('smsProvider')]
     public function testSend(array $params)
     {
         $transport = $this->createSmsMockTransport();

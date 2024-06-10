@@ -1,20 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jaddek\Services\Notification\Tests\Service\Domains\Sms;
 
 use Jaddek\Services\Notification\Domains\Sms\Sms;
 use Jaddek\Services\Notification\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * Class SmsTest
- * @package Jaddek\Services\Notification\Tests\Service\Domains\Sms
- */
 class SmsTest extends TestCase
 {
-    /**
-     * @dataProvider smsProvider
-     * @param array $params
-     */
+    #[DataProvider('smsProvider')]
     public function testSetParams(array $params)
     {
         $sms = new Sms();

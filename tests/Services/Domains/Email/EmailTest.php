@@ -4,6 +4,7 @@ namespace Jaddek\Services\Notification\Tests\Service\Domains\Email;
 
 use Jaddek\Services\Notification\Domains\Email\Email;
 use Jaddek\Services\Notification\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class SmsTest
@@ -11,10 +12,7 @@ use Jaddek\Services\Notification\Tests\TestCase;
  */
 class EmailTest extends TestCase
 {
-    /**
-     * @dataProvider emailProvider
-     * @param array $params
-     */
+    #[DataProvider('emailProvider')]
     public function testSetParams(array $params)
     {
         $email = new Email();

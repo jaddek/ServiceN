@@ -4,6 +4,8 @@ namespace Jaddek\Services\Notification\Tests;
 
 use Jaddek\Services\Notification\Domains\Email\Transports\SwiftTransport;
 use Jaddek\Services\Notification\Domains\Sms\Transports\SmscTransport;
+use PHPUnit\Framework\MockObject\Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use SMSCenter\SMSCenter;
 
 /**
@@ -15,17 +17,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @return array
      */
-    public function smsProvider()
+    public static function smsProvider(): array
     {
         return [
-            [['phone' => 123, 'text' => 'text', 'sender' => 'sender']],
+            [['phone' => '123', 'text' => 'text', 'sender' => 'sender']],
         ];
     }
 
     /**
      * @return array
      */
-    public function emailProvider()
+    public static function emailProvider(): array
     {
         return [
             [['to' => 'test@test.com', 'from' => 'test@test.com', 'body' => 'body', 'subject' => 'subject']],
@@ -33,9 +35,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return (object&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject|SMSCenter|(SMSCenter&object&\PHPUnit\Framework\MockObject\MockObject)|(SMSCenter&\PHPUnit\Framework\MockObject\MockObject)
+     * @throws Exception
      */
-    public function getSmsMockProvider()
+    public function getSmsMockProvider(): MockObject
     {
         $mock = $this->createMock(SMSCenter::class);
         $mock->method('send')->willReturn(1);
@@ -44,21 +47,21 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @throws Exception
      */
-    public function createSmsMockTransport()
+    public function createSmsMockTransport(): MockObject|SmscTransport
     {
         $mock = $this->createMock(SmscTransport::class);
         $mock->method('getClient')
-            ->will($this->returnValue($this->getSmsMockProvider()));
+            ->willReturn($this->getSmsMockProvider());
 
         return $mock;
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @throws Exception
      */
-    public function getEmailMockMailer()
+    public function getEmailMockMailer(): MockObject
     {
         $mock = $this->createMock(\Swift_Mailer::class);
         $mock->method('send')->willReturn(1);
@@ -66,15 +69,12 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         return $mock;
     }
 
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    public function createEmailMockTransport()
+    public function createEmailMockTransport(): MockObject|SwiftTransport
     {
         $mock = $this->createMock(SwiftTransport::class);
 
         $mock->method('getClient')
-            ->will($this->returnValue($this->getEmailMockMailer()));
+            ->willReturn($this->getEmailMockMailer());
 
         return $mock;
     }

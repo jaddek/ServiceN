@@ -65,11 +65,4 @@ class SmscTransport implements SmsTransportInterface
     private function __clone()
     {
     }
-
-    /**
-     *
-     */
-    private function __wakeup()
-    {
-    }
 }
